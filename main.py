@@ -9,6 +9,7 @@ from email.mime.multipart import MIMEMultipart
 # Load environment variables
 load_dotenv()
 
+
 def send_email(subject, content, to_email):
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
@@ -32,6 +33,7 @@ def send_email(subject, content, to_email):
     server.send_message(msg)
     server.quit()
 
+
 def main():
     currents_api_key = os.getenv('CURRENTS_API')
     openai_api_key = os.getenv('OPENAI_API_KEY')
@@ -50,6 +52,7 @@ def main():
     summary = generate_tweet(openai_api_key, news_data)
     # Send the summary via email
     send_email("Today's Trending News Summary", summary, email_to)
+
 
 if __name__ == "__main__":
     main()
