@@ -1,9 +1,10 @@
-from currentsapi import CurrentsAPI
+# from currentsapi import CurrentsAPI
 import requests
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
 
 def fetch_latest_news(api_key, keyword=None, language='en', limit=10):
     if keyword:
@@ -12,15 +13,12 @@ def fetch_latest_news(api_key, keyword=None, language='en', limit=10):
             'apiKey': api_key,
             'language': language,
             'limit': limit,
-            'keywords': keyword  # Exact match of words in the title or description
+            'keywords':
+            keyword  # Exact match of words in the title or description
         }
     else:
         url = 'https://api.currentsapi.services/v1/latest-news'
-        params = {
-            'apiKey': api_key,
-            'language': language,
-            'limit': limit
-        }
+        params = {'apiKey': api_key, 'language': language, 'limit': limit}
     print(f"Making request to {url} with params {params}")
     response = requests.get(url, params=params)
     if response.status_code == 200:
